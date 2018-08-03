@@ -1,24 +1,29 @@
 angular.module('video-player')
-.component('app', {
 
-  controller: function (youTube) {
-    this.selectVideo = (index) => {
-      this.currentVideo = this.videos[index];
-    };
+.controller('videoController', ['$scope', '$window', 'youTube', function($scope, $window, youTube) {
+  $scope.videos = $window.exampleVideoData;
+  $scope.video = $window.exampleVideoData[0];
+  $scope.onClick = function(video) {
+    $scope.video = video;
+  };
 
-    this.updateVideos = (list) => {
-      this.videos = list;
-      this.currentVideo = this.videos[0];
-    };
 
-    this.searchResults = (input) => {
-      youTube.search(input, this.updateVideos);
-    };
+  // $scope.searchResults = this.youTube.getYouTube(query, function (query) {
+  //   $scope.videos = query;
+  //   $scope.video = query[0];
+  // }).bind(this);
 
-    youTube.search('coffee', this.updateVideos);
+  // $scope.inputValue = null;
 
-    this.currentVideo = this.videos ? this.videos[0] : {};
-  },
+}])
 
-  templateUrl: 'src/templates/app.html'
+.directive('app', function() {
+  return {
+    templateUrl: 'src/templates/app.html ',
+    controllerAs: 'ctrl',
+    bindToController: true,
+    controller: function($scope) {
+      console.log($scope);
+    }
+  };
 });

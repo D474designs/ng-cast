@@ -1,12 +1,16 @@
 angular.module('video-player')
-.component('videoList', {
-  bindings: {
-    videos: '<',
-    onClick: '<'
-  },
 
-  controller: function() {
-  },
-
-  templateUrl: 'src/templates/videoList.html'
+.directive('videoList', function() {
+  return {
+    scope: {
+      videos: '<',
+      onClick: '<'
+    },
+    templateUrl: 'src/templates/videoList.html',
+    controllerAs: 'ctrl',
+    bindToController: true,
+    controller: function($scope) {
+      console.log($scope);
+    },
+  };
 });
