@@ -1,18 +1,28 @@
 angular.module('video-player')
 
-.directive('videoPlayer', function() {
-  return {
-    scope: {
-      video: '<',
-    },
-    templateUrl: 'src/templates/videoPlayer.html',
-    controllerAs: 'ctrl',
-    bindToController: true,
-    controller: function($scope) {
-      console.log($scope);
-    },
-  };
+.component('videoPlayer', {
+  controller: function($window) {
+    this.videos = $window.exampleVideoData;
+    this.selectedVideo = this.videos[0];
+  },
+  templateUrl: 'src/templates/player.html'
 });
+
+// angular.module('video-player')
+//
+// .directive('videoPlayer', function() {
+//   return {
+//     scope: {
+//       video: '<',
+//     },
+//     templateUrl: 'src/templates/videoPlayer.html',
+//     controllerAs: 'ctrl',
+//     bindToController: true,
+//     controller: function($scope) {
+//       console.log($scope);
+//     },
+//   };
+// });
 
 
 // Testing both cat element and js video element
